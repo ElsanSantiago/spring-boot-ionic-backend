@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.elzasantiago.cursomc.domain.Categoria;
 import com.elzasantiago.cursomc.domain.Cidade;
+import com.elzasantiago.cursomc.domain.Cliente;
+import com.elzasantiago.cursomc.domain.Endereco;
 import com.elzasantiago.cursomc.domain.Estado;
 import com.elzasantiago.cursomc.domain.Produto;
+import com.elzasantiago.cursomc.domain.enums.TipoCliente;
 import com.elzasantiago.cursomc.repositories.CategoriaRepository;
 import com.elzasantiago.cursomc.repositories.CidadeRepository;
+import com.elzasantiago.cursomc.repositories.ClienteRepository;
+import com.elzasantiago.cursomc.repositories.EnderecoRepository;
 import com.elzasantiago.cursomc.repositories.EstadoRepository;
 import com.elzasantiago.cursomc.repositories.ProdutoRepository;
 
@@ -30,6 +35,12 @@ public class CursomcApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CidadeRepository cidadeRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -54,10 +65,10 @@ public class CursomcApplication implements CommandLineRunner{
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
-		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est1 = new Estado(null, "Rio de Janeiro");
 		Estado est2 = new Estado(null, "São Paulo");
 		
-		Cidade c1 = new Cidade(null, "Uberlândia", est1);
+		Cidade c1 = new Cidade(null, "Niteroi", est1);
 		Cidade c2 = new Cidade(null, "São Paulo", est2);
 		Cidade c3 = new Cidade(null, "Campinas", est2);
 		
@@ -66,6 +77,18 @@ public class CursomcApplication implements CommandLineRunner{
 		
 		estadoRepository.saveAll(Arrays.asList(est1, est2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
+		Cliente cli1 = new Cliente(null, "Elza Maria Novais Santiago", "elzansantiago@gmail.com", "10490175520", TipoCliente.PESSOAFISICA);
+		
+		cli1.getTelefones().addAll(Arrays.asList("976567670", "986837354"));
+		
+		Endereco e1 = new Endereco(null, "Rua Mem de Sá", "82", "apto.402", "Icaraí", "24220.261", cli1, c1 );
+		Endereco e2 = new Endereco(null, "Avenida Mattos", "105", "Sala 402", "Centro", "24220.261", cli1, c2 );
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		
+		clienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 	}
 
 }
