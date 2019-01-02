@@ -11,6 +11,7 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 import com.elzasantiago.cursomc.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
@@ -21,6 +22,7 @@ private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer estado;
 	
+	@JsonBackReference
 	@OneToOne
 	@JoinColumn(name="pedido_id")
 	@MapsId
