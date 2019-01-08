@@ -3,6 +3,8 @@ package com.elzasantiago.cursomc;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -92,8 +94,8 @@ public class CursomcApplication implements CommandLineRunner{
 		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
 		p3.getCategorias().addAll(Arrays.asList(cat1));
 		
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6
-				,cat7, cat8, cat9, cat10, cat11, cat12));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6,
+				cat7, cat8, cat9, cat10, cat11, cat12));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		
 		Estado est1 = new Estado(null, "Rio de Janeiro");
