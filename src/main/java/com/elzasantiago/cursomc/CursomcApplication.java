@@ -3,8 +3,6 @@ package com.elzasantiago.cursomc;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
-import javax.validation.constraints.NotEmpty;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
