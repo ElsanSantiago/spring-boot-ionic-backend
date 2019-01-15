@@ -33,17 +33,30 @@ public class ItemPedido implements Serializable {
 	public double getSubTotal() {
 		return (preco - desconto) * quantidade;
 	}
+	
+	/*implementação para o Jackson
+	o metodo get recuperar o item pedido do produto e pedido associado a ele,
+	para instaciar e associar a esse  item pedido temoa que implementar também
+    o metodo set para produto e pedido. neste caso já pode ser definito os dois.
+    isso é feito por meio do construtor mas o framework não usa o construtor como arqumento.
+	*/
 	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
 	
+	public void setPedido(Pedido pedido) {
+		id.setPedido(pedido);
+	}
 	
 	public Produto getProduto() {
 		return id.getProduto();
 		
 	}
 	
+	public void setProduto(Produto produto) {
+		id.setProduto(produto);
+	}
 	
 	public ItemPedidoPK getId() {
 		return id;
